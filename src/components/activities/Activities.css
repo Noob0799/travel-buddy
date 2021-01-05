@@ -1,5 +1,6 @@
 .activities-container {
-    height: 295px;
+    max-height: 295px;
+    height: fit-content;
     overflow: auto;
 }
 

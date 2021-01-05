@@ -1,0 +1,27 @@
+.cities-container {
+    max-height: 295px;
+    height: fit-content;
+    overflow: auto;
+}
+
+.cities-items {
+    padding: 5px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}

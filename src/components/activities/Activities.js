@@ -17,14 +17,6 @@ export default class Activities extends Component {
         this.getData(this.state.setNumber);
     }
 
-    // componentDidUpdate() {
-    //     const ref = document.getElementById((this.state.setNumber*10+1).toString());
-    //     if(ref) {
-    //         console.log(ref);
-    //         ref.scrollIntoView();
-    //     }
-    // }
-
     sortData = (data) => {
         return data.sort((a,b) => Number(a.id) - Number(b.id));
     }
