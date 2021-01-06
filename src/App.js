@@ -15,8 +15,12 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     textAlign: 'left',
     backgroundColor: 'lightgrey',
-    color: 'grey'
+    color: 'grey',
+    borderRadius: "0"
   },
+  search: {
+    textAlign: 'left'
+  }
 }));
 
 const App = () => {
@@ -27,7 +31,7 @@ const App = () => {
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Paper className={classes.paper}><SearchComponent/></Paper>
+            <Paper className={classes.search}><SearchComponent/></Paper>
           </Grid>
           <Grid item xs={12} sm={6}>
             <Paper className={classes.paper}><Cities/></Paper>

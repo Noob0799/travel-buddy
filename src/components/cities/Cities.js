@@ -10,7 +10,10 @@ class Cities extends Component {
     }
 
     componentDidMount() {
-        citiesStore.subscribe(() => this.handleStateChange(citiesStore));
+        this.unsubscribe = citiesStore.subscribe(() => this.handleStateChange(citiesStore));
+        this.setState({
+            selectedCities: citiesStore.getState().selectedCities
+        });
     }
 
     handleStateChange = (store) => {
@@ -37,6 +40,10 @@ class Cities extends Component {
                 </div>
             </Fragment>
         )
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 }
 

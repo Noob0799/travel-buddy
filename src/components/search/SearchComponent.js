@@ -8,20 +8,56 @@ import './SearchComponent.css';
 import citiesStore from '../../reducer/citiesReducer';
 
 
-const useStyles = theme => ({
+const useStyles = (theme) => ({
     root: {
-        backgroundColor: "white"
-      },
-      popupIndicator: {
+        backgroundColor: "white",
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              border: '5px solid lightgrey',
+              borderRadius: "0",
+              boxShadow: "5px 5px 10px gainsboro"
+            },
+            '&:hover fieldset': {
+                border: '5px solid lightgrey',
+                borderRadius: "0",
+              },
+            '&.Mui-focused fieldset': {
+              border: '5px solid lightgrey',
+              borderRadius: "0",
+            },
+        },
+    },
+    popupIndicator: {
         paddingLeft: "5px",
-        paddingTop: "0"
-      },
-      clearIndicator: {
-        paddingTop: "0"
-      },
-      popupIndicatorOpen: {
+        paddingTop: "0",
+        color: "black"
+    },
+    clearIndicator: {
+        paddingTop: "0",
+        color: "black"
+    },
+    popupIndicatorOpen: {
         transform: "scaleX(1)"
-      }
+    },
+    paper: {
+        marginTop: "0",
+        border: "5px solid lightgrey",
+        backgroundColor: "lightgrey",
+        borderRadius: "0",
+    },
+    option: {
+        borderBottom: "1px solid white",
+        padding: "10px"
+    },
+    tag: {
+        borderRadius: "0",
+        color: "grey",
+        fontWeight: "500",
+        fontSize: "15px",
+        '& .MuiSvgIcon-root': {
+            color: "black"
+        }
+    }
 });
 
 const svg = () => {
@@ -36,15 +72,23 @@ class SearchComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            citiesData: []
+            citiesData: [],
+            selectedCities: []
         };
     } 
 
     componentDidMount() {
-        console.log(data.cities);
+        this.unsubscribe = citiesStore.subscribe(() => this.handleStateChange(citiesStore));
         this.setState({
-            citiesData: data.cities
+            citiesData: data.cities,
+            selectedCities: citiesStore.getState().selectedCities
         })
+    }
+
+    handleStateChange = (store) => {
+        this.setState({
+            selectedCities: store.getState().selectedCities
+        });
     }
 
     handleChange = (event,selectedCities) => {
@@ -63,12 +107,18 @@ class SearchComponent extends Component {
                     multiple
                     id="tags-outlined"
                     options={optionsData}
+                    value={this.state.selectedCities}
+                    getOptionSelected={(option, value) => option.id === value.id}
                     getOptionLabel={(option) => option.name}
                     filterSelectedOptions
                     classes={{
                         popupIndicator: classes.popupIndicator,
                         clearIndicator: classes.clearIndicator,
-                        popupIndicatorOpen: classes.popupIndicatorOpen
+                        popupIndicatorOpen: classes.popupIndicatorOpen,
+                        listbox: classes.listbox,
+                        paper: classes.paper,
+                        option: classes.option,
+                        tag: classes.tag
                     }}
                     popupIcon={svg()}
                     onChange={(event,value) => {
@@ -80,13 +130,19 @@ class SearchComponent extends Component {
                             variant="outlined"
                             placeholder="Cities"
                             classes={{
-                                root: classes.root
+                                root: classes.root,
+                                notchedOutline: classes.notchedOutline,
+                                focused: classes.focused,
                             }}
                         />
                     }}
                 />
             </Fragment>
         )
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 }
 
