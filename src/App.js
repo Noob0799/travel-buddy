@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     backgroundColor: 'lightgrey',
     color: 'grey',
-    borderRadius: "0"
+    borderRadius: "0",
+    boxShadow: "5px 10px 10px grey"
   },
   search: {
     textAlign: 'left'

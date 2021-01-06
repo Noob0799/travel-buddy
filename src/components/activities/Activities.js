@@ -39,7 +39,7 @@ export default class Activities extends Component {
         console.log(set);
         const page = Math.floor(set/3)+1;
         if(this.state.pageNumber !== page) {
-            Axios.get(`http://my-json-server.typicode.com/rivitest001/task0${page}/posts`)
+            Axios.get(`https://my-json-server.typicode.com/rivitest001/task0${page}/posts`)
             .then(response => {
                 this.setState({
                     activitiesData: [...response.data,...this.state.activitiesData],

@@ -15,7 +15,7 @@ const useStyles = (theme) => ({
             '& fieldset': {
               border: '5px solid lightgrey',
               borderRadius: "0",
-              boxShadow: "5px 5px 10px gainsboro"
+              boxShadow: "5px 5px 10px grey"
             },
             '&:hover fieldset': {
                 border: '5px solid lightgrey',
