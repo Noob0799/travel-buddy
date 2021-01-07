@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import citiesStore from '../../reducer/citiesReducer';
 import './Cities.css';
+
+//Component to list cities as selected by user in search component
 class Cities extends Component {
     constructor(props) {
         super(props);
@@ -10,12 +12,13 @@ class Cities extends Component {
     }
 
     componentDidMount() {
-        this.unsubscribe = citiesStore.subscribe(() => this.handleStateChange(citiesStore));
+        this.unsubscribe = citiesStore.subscribe(() => this.handleStateChange(citiesStore)); //subscription to store
         this.setState({
             selectedCities: citiesStore.getState().selectedCities
         });
     }
 
+    //callback to handle change in redux store
     handleStateChange = (store) => {
         this.setState({
             selectedCities: store.getState().selectedCities

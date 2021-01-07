@@ -68,6 +68,7 @@ const svg = () => {
     );
 }
 
+//Component to search for cities
 class SearchComponent extends Component {
     constructor(props) {
         super(props);
@@ -78,19 +79,21 @@ class SearchComponent extends Component {
     } 
 
     componentDidMount() {
-        this.unsubscribe = citiesStore.subscribe(() => this.handleStateChange(citiesStore));
+        this.unsubscribe = citiesStore.subscribe(() => this.handleStateChange(citiesStore)); //subscription to store
         this.setState({
             citiesData: data.cities,
             selectedCities: citiesStore.getState().selectedCities
         })
     }
 
+    //callback to handle change in redux store
     handleStateChange = (store) => {
         this.setState({
             selectedCities: store.getState().selectedCities
         });
     }
 
+    //function to update selected cities in redux store
     handleChange = (event,selectedCities) => {
         citiesStore.dispatch({type: 'UPDATE_CITIES', cities: selectedCities});
     }

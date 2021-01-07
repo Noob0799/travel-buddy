@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Axios from 'axios';
 import './Activities.css';
 
+//Component to list the activities
 export default class Activities extends Component {
     constructor(props) {
         super(props);
@@ -17,10 +18,12 @@ export default class Activities extends Component {
         this.getData(this.state.setNumber);
     }
 
+    //function to sort the data on the basis of their ids
     sortData = (data) => {
         return data.sort((a,b) => Number(a.id) - Number(b.id));
     }
 
+    //function to handle activities view scroll. Data loads on scrollup
     handleScroll = () => {
         const currentScrollPos = document.getElementById((this.state.setNumber*10+1).toString()).getBoundingClientRect().top;
         console.log(currentScrollPos);
@@ -35,6 +38,7 @@ export default class Activities extends Component {
         }
     }
 
+    //function to fetch data from REST service
     getData = (set) => {
         console.log(set);
         const page = Math.floor(set/3)+1;

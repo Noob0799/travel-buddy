@@ -1,5 +1,6 @@
 import { createStore } from "redux";
 
+//function to get selected cities from sessionstorage and set it as global state. Selection persists on page refresh.
 const getSelectedCities = () => {
     let cities = sessionStorage.getItem('cities');
     console.log(cities);
